@@ -1,0 +1,36 @@
+def main():
+    # Ask the user for the input filename
+    input_filename = input("Etyang Noel(WH).pdf: ")
+
+    try:
+        # Try to open and read the input file
+        with open(input_filename, 'r', encoding='utf-8') as infile:
+            content = infile.read()
+            print("File read successfully!")
+
+    except FileNotFoundError:
+        print(f"Error: The file '{input_filename}' does not exist.")
+        return
+    except PermissionError:
+        print(f"Error: Permission denied to read '{input_filename}'.")
+        return
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return
+
+    # Modify the content (example: convert to uppercase)
+    modified_content = content.upper()
+
+    # Define the output filename
+    output_filename = f"modified_{input_filename}"
+
+    try:
+        # Try to write the modified content to a new file
+        with open(output_filename, 'w', encoding='utf-8') as outfile:
+            outfile.write(modified_content)
+            print(f"Modified content written to '{output_filename}'.")
+    except Exception as e:
+        print(f"Error writing to output file: {e}")
+
+if __name__ == "__main__":
+    main()
